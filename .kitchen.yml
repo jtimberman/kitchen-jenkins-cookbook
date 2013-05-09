@@ -1,0 +1,26 @@
+---
+driver_plugin: vagrant
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: canonical-ubuntu-12.04
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box
+    require_chef_omnibus: true
+    customize:
+      memory: 512
+  run_list: ["recipe[apt]"]
+
+- name: debian-6.0.7
+  driver_config:
+    box: opscode-debian-6.0.7
+    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_debian-6.0.7_chef-11.2.0.box
+    require_chef_omnibus: true
+    customize:
+      memory: 512
+  run_list: ["recipe[apt]"]
+
+suites:
+- name: default
+  run_list: ["recipe[kitchen-jenkins]"]
+  attributes: {}
